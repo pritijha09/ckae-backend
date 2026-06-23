@@ -77,20 +77,20 @@ class AuthService {
 
     async login(email, password) {
         const user = await User.findOne({email});
-        //console.log("Password", password)
-        //console.log("user.password", user.password)
+        console.log("Password", password)
+        console.log("user.password", user.password)
        if (!user) {
             if (!user) {
                 throw new Error('User not found');
             }
         }
 
-        const isMatch = await bcrypt.compare(
-            password,
-            user.password
-        )
+        // const isMatch = await bcrypt.compare(
+        //     password,
+        //     user.password
+        // )
 
-        if (!isMatch) {
+        if (password !== user.password) {
             throw new Error('Invalid Password');
         }
 

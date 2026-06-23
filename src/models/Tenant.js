@@ -1,15 +1,34 @@
 const { default: mongoose } = require("mongoose");
 
 const TenantSchema = new mongoose.Schema({
-    shopName: String,
-    email: String,
-    phone: String,
+    shopName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    mobileNumber: {
+        type: String,
+        required: true
+    },
     logo: String,
     address: String,
-    subscriptionPlan: String,
+    subscriptionPlanId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SubscriptionPlan',
+        required: true
+    },
     status: {
         type: String,
-        default: 'Active'
+        enum: [
+            'ACTIVE',
+            'INACTIVE',
+            'SUSPENDED'
+        ],
+        default: 'ACTIVE'
     }
 },{
     timestamps: true

@@ -1,0 +1,31 @@
+const userService =
+require('../../services/user.service');
+
+class ShopAdminController {
+
+    async create(req, res) {
+
+        try {
+
+            const result =
+                await userService.createShopAdmin(
+                    req.body
+                );
+
+            return res.status(201).json({
+                success: true,
+                data: result
+            });
+
+        } catch (error) {
+
+            return res.status(400).json({
+                success: false,
+                message: error.message
+            });
+        }
+    }
+}
+
+module.exports =
+new ShopAdminController();

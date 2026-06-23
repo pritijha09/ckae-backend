@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
             'CUSTOMER'
         ]
     },
-    phone: String,
+    mobileNumber: String,
     isActive: {
         type: Boolean,
         default: true
