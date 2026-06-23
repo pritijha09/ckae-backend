@@ -34,7 +34,7 @@ exports.login = async (
 ) => {
     try {
         const {email, password} = req.body;
-
+      debugger
         const result = await authService.login(
             email,
             password
@@ -51,3 +51,24 @@ exports.login = async (
         });
     }
 };
+
+  exports.createSuperAdmin = async (
+    req,
+    res
+) => {
+        try {
+
+            const result = await authService.createSuperAdmin(
+                req.body
+            );
+
+            return res.status(201).json(result);
+
+        } catch (error) {
+
+            return res.status(400).json({
+                success: false,
+                message: error.message
+            });
+        }
+    }

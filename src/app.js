@@ -1,7 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 
-const authRoutes = require('./modules/auth/auth.routes');
+const authRoutes = require('./routes/auth.routes');
+const tenantRoutes = require('./routes/super-admin/tenant.routes');
+const subscriptionRoutes = require('./routes/super-admin/subscription.routes');
+//const dashboardRoutes = require('./routes/super-admin/dashboard.routes');
 
 const app = express();
 app.use(cors());
@@ -16,7 +19,7 @@ app.use(
 
 app.use(
     '/api/super-admin/tenants',
-    require('./routes/super-admin/tenant.routes')
+   tenantRoutes
 );
 
 app.use(
@@ -24,9 +27,9 @@ app.use(
     require('./routes/super-admin/subscription.routes')
 );
 
-app.use(
-    '/api/super-admin/dashboard',
-    require('./routes/super-admin/dashboard.routes')
-);
+// app.use(
+//     '/api/super-admin/dashboard',
+//     require('./routes/super-admin/dashboard.routes')
+// );
 
 module.exports = app;
