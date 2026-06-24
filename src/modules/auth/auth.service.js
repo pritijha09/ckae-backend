@@ -77,8 +77,6 @@ class AuthService {
 
     async login(email, password) {
         const user = await User.findOne({email});
-        console.log("Password", password)
-        console.log("user.password", user.password)
        if (!user) {
             if (!user) {
                 throw new Error('User not found');

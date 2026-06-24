@@ -3,20 +3,51 @@ const { default: mongoose } = require("mongoose");
 const ProductSchema = new mongoose.Schema({
     tenantId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tenant'
+        ref: 'Tenant',
+        required: true
     },
     categoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category'
+        ref: 'Category',
+        required: true
     },
-    name: String,
-    description: String,
-    images: [String],
-    basePrice: Number,
-    stock: Number,
-    flavor: String,
-    eggType: String,
-    isActive: Boolean
+    name: {
+        type: String,
+        required: true
+    },
+
+    slug: {
+        type: String,
+        unique: true
+    },
+
+    description: {
+        type: String
+    },
+    flavor: {
+        type: String
+    },
+
+    eggType: {
+        type: String,
+        enum: [
+            'EGG',
+            'EGGLESS'
+        ]
+    },
+
+    images: [{
+        type: String
+    }],
+
+    tags: [{
+        type: String
+    }],
+
+    isActive: {
+        type: Boolean,
+        default: true
+    }
 },{
     timestamps: true
 });

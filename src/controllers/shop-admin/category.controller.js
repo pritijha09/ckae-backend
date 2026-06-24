@@ -41,7 +41,6 @@ class CategoryController {
 
     async getById(req, res) {
         try {
-             console.log("priti", req.user.tenantId)
             const result = await categoryService.getById(
                 req.params.id,
                 req.user.tenantId

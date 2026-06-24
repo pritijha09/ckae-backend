@@ -43,9 +43,4 @@ router.get(
 //     controller.deleteTenant
 // );
 
-// console.log(typeof auth);
-// console.log(typeof authorize);
-// console.log(typeof controller.create);
-// console.log(typeof controller.getAll);
-
 module.exports = router;
