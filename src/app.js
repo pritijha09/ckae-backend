@@ -5,6 +5,7 @@ const authRoutes = require('./routes/auth.routes');
 const tenantRoutes = require('./routes/super-admin/tenant.routes');
 const subscriptionRoutes = require('./routes/super-admin/subscription.routes');
 const shopAdmin = require('./routes/super-admin/shop-admin.routes');
+const categoryRoutes = require('./routes/shop-admin/category.routes');
 
 //const dashboardRoutes = require('./routes/super-admin/dashboard.routes');
 
@@ -20,6 +21,11 @@ app.use(
 );
 
 app.use(
+    '/api/shop-admin/categories',
+    categoryRoutes
+);
+
+app.use(
     '/api/super-admin/tenants',
    tenantRoutes
 );
@@ -31,7 +37,7 @@ app.use(
 
 app.use(
     '/api/super-admin/plans',
-    require('./routes/super-admin/subscription.routes')
+    subscriptionRoutes
 );
 
 // app.use(

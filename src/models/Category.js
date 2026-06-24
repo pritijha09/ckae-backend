@@ -3,18 +3,21 @@ const { default: mongoose } = require("mongoose");
 const CategorySchema = new mongoose.Schema({
     tenantid: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tenant'
+        ref: 'Tenant',
+        required: true
     },
-    name: String,
+    name: {
+        type: String,
+        required:true
+    },
     image: String,
     description: String,
-    isActive: Boolean
+    isActive: {
+        type: Boolean,
+        default: true
+    }
 },{
     timestamps: true
-});
-
-CategorySchema.index({
-    tenantId: 1
 });
 
 CategorySchema.index({

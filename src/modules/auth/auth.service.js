@@ -97,7 +97,8 @@ class AuthService {
        const token = jwt.sign(
       {
         userId: user._id,
-        role: user.role
+        role: user.role,
+        tenantId: user.tenantId,
       },
       process.env.JWT_SECRET,
       {
