@@ -14,10 +14,7 @@ router.post(
     '/',
     auth,
     authorize('SHOP_ADMIN'),
-    upload.array(
-        'images',
-        10
-    ),
+    upload.array('images', 10),
     controller.create
 );
 

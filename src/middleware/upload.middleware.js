@@ -34,6 +34,9 @@ const multer = require('multer');
 
 const storage = multer.memoryStorage();
 
-module.exports = multer({
-    storage
-});
+const upload =
+    multer({
+        storage
+    });
+
+module.exports = upload;

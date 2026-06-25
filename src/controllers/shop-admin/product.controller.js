@@ -1,9 +1,18 @@
 const productService = require('../../services/product.service');
+const uploadToCloudinary = require('../../utils/cloudinary-upload');
+const slugify = require('slugify');
 
 class ProductController {
 
     async create(req, res) {
         try {
+            const slug = slugify(
+                req.body.name,
+                {
+                    lower: true,
+                    strict: true
+                }
+            );
 
         if (!req.body) {
             return res.status(400).json({
@@ -12,25 +21,38 @@ class ProductController {
             });
         }
             const images = [];
+            if (
+                req.files &&
+                req.files.length > 0
+            ) {
 
-            if (req.files) {
+                for (
+                    const file
+                    of req.files
+                ) {
 
-                req.files.forEach(
-                    file => {
+                    const uploaded =
+                        await uploadToCloudinary(
+                            file
+                        );
 
-                    images.push(
-                      file.path
-                    );
+                    images.push({
 
-                });
+                        url:
+                            uploaded.secure_url,
+
+                        publicId:
+                            uploaded.public_id
+                    });
+                }
             }
-
             const product =
                 await productService.create({
 
                     tenantId:req.user.tenantId,
                     categoryId:req.body.categoryId,
                     name:req.body.name,
+                    slug,
                     description:req.body.description,
                     flavor:req.body.flavor,
                     eggType:req.body.eggType,
